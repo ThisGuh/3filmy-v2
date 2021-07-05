@@ -8,7 +8,11 @@
     "start": "next start",
     "lint": "next lint",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "prepare": "husky install",
+    "check-types": "tsc --pretty -noEmit",
+    "check-format": "prettier --check .",
+    "check-lint": "eslint . --ext ts --ext tsx --ext js --ext jsx"
   },
   "dependencies": {
     "@types/styled-components": "^5.1.10",
