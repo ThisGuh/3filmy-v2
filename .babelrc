@@ -1,4 +1,4 @@
 {
-  "plugins": ["babel-plugin-styled-components"],
+  "plugins": [["styled-components", { "srr": true }]],
   "presets": ["next/babel"]
 }
