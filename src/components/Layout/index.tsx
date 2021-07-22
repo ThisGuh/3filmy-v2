@@ -1,10 +1,13 @@
 import Theme from 'components/Theme';
-import Logo from 'components/Logo';
+import AppWrapper from 'components/AppWrapper';
+import Menu from 'components/Menu';
 
 function Layout() {
   return (
     <Theme>
-      <Logo />
+      <AppWrapper>
+        <Menu />
+      </AppWrapper>
     </Theme>
   );
 }

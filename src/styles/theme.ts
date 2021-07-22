@@ -6,11 +6,11 @@ export const theme = {
     lightGray: '#696972',
   },
   fontSizes: {
-    xs: '1.4rem',
-    sm: '1.6rem',
-    md: '1.8rem',
-    lg: '3rem',
-    xl: '5.5rem',
+    xs: '1rem',
+    sm: '1.3rem',
+    md: '1.7rem',
+    lg: '2.5rem',
+    xl: '4rem',
   },
   fontFamilies: {
     default: 'Poppins, sans-serif',
