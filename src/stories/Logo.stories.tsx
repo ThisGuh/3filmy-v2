@@ -1,14 +1,24 @@
-import { Meta } from '@storybook/react';
+import { Story, Meta } from '@storybook/react';
 import RendersWithProviders from 'helpers/RenderWithProviders';
 import Logo from 'components/Logo';
+
+type LogoProps = {
+  burger: boolean;
+};
 
 export default {
   title: 'Logo',
   component: Logo,
 } as Meta;
 
-export const Primary = () => (
+const Template: Story<LogoProps> = args => (
   <RendersWithProviders>
-    <Logo />
+    <Logo {...args} />
   </RendersWithProviders>
 );
+
+export const Primary = Template.bind({});
+
+Primary.args = {
+  burger: true,
+};
