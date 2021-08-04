@@ -1,5 +1,4 @@
 import { Story, Meta } from '@storybook/react';
-import RendersWithProviders from 'helpers/RenderWithProviders';
 import Logo from 'components/Logo';
 
 type LogoProps = {
@@ -7,15 +6,11 @@ type LogoProps = {
 };
 
 export default {
-  title: 'Logo',
+  title: 'Components/Logo',
   component: Logo,
 } as Meta;
 
-const Template: Story<LogoProps> = args => (
-  <RendersWithProviders>
-    <Logo {...args} />
-  </RendersWithProviders>
-);
+const Template: Story<LogoProps> = args => <Logo {...args} />;
 
 export const Primary = Template.bind({});
 
