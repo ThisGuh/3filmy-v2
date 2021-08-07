@@ -34,13 +34,18 @@ export const MenuHeader = styled.header<Props>`
 `;
 
 export const Nav = styled.nav<Props>`
+  position: absolute;
+  top: ${MenuHeaderHeight};
   height: calc(100vh - ${MenuHeaderHeight});
   background-color: ${({ theme }) => theme.colors.green};
   transition-duration: ${animationDuration};
   width: ${({ burger }) => (!burger ? '100%' : NavWidth)};
+  overflow: ${({ burger }) => (!burger ? 'hidden' : null)};
   transform: translateX(${({ burger }) => (!burger ? 0 : `-${NavWidth}`)});
+  z-index: 10;
 
   @media ${({ theme }) => theme.screenSizes.lg} {
+    position: static;
     background-color: ${({ theme }) => theme.colors.darkGray};
     width: 100%;
     transform: translateX(0);

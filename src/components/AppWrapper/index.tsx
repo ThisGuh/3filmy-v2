@@ -1,22 +1,33 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
+import { RootState } from 'state/reducers';
 
-const Wrapper = styled.div`
+type StyledProps = {
+  isBurger: boolean;
+};
+
+type Props = {
+  children: React.ReactNode;
+};
+
+const Wrapper = styled.div<StyledProps>`
   min-height: 100vh;
+  overflow: ${({ isBurger }) => (!isBurger ? 'hidden' : null)};
+  height: ${({ isBurger }) => (!isBurger ? '100vh' : null)};
   display: grid;
   grid-template-columns: 1fr;
 
   @media ${({ theme }) => theme.screenSizes.lg} {
     grid-template-columns: 1fr 5.5fr 1fr;
+    height: inherit;
   }
 `;
 
-type Props = {
-  children: React.ReactElement;
-};
-
 function AppWrapper({ children }: Props) {
-  return <Wrapper>{children}</Wrapper>;
+  const isBurger = useSelector((state: RootState) => state.isBurger);
+
+  return <Wrapper isBurger={isBurger}>{children}</Wrapper>;
 }
 
 export default AppWrapper;
