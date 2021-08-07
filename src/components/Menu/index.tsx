@@ -31,12 +31,12 @@ function Menu() {
       </MenuHeader>
       <Nav burger={isBurger}>
         <ItemList>
-          {NavItems.map(item => (
-            <Link href={item.to} key={item.name} passHref>
+          {NavItems.map(({ to, name, icon }) => (
+            <Link href={to} key={name} passHref>
               <a>
                 <Item>
-                  {item.icon}
-                  {item.name}
+                  {icon}
+                  {name}
                 </Item>
               </a>
             </Link>
