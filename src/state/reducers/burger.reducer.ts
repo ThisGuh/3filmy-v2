@@ -1,11 +1,8 @@
+import { AnyAction } from 'redux';
 import { TOGGLE_HAMBURGER } from 'state/actionTypes';
 
-type Action = {
-  type: string;
-};
-
-const burgerReducer = (state = true, { type }: Action) => {
-  switch (type) {
+const burgerReducer = (state = true, action: AnyAction) => {
+  switch (action.type) {
     case TOGGLE_HAMBURGER:
       return !state;
     default:

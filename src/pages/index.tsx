@@ -1,7 +1,44 @@
+import { InferGetStaticPropsType } from 'next';
+import axios from 'axios';
 import Layout from 'components/Layout';
+import fetchPopularMovies from 'helpers/fetchPopularMovies';
+import { PopularMoviesType } from 'types/PopularMovies';
+import useIndexDataDispatch from 'hooks/useIndexDataDispatch';
 
-function Home() {
+const indexPageData = () =>
+  axios
+    .all([fetchPopularMovies()])
+    .then(
+      axios.spread(popularMoviesResponse => {
+        const popularMovies: PopularMoviesType = popularMoviesResponse.data;
+        return {
+          popularMovies,
+          error: false,
+        };
+      })
+    )
+    .catch(() => ({
+      popularMovies: null,
+      error: true,
+    }));
+
+function Home({
+  popularMovies,
+  error,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
+  useIndexDataDispatch(popularMovies, error);
+
   return <Layout />;
 }
+
+export const getStaticProps = async () => {
+  const data = await indexPageData();
+
+  return {
+    props: {
+      ...data,
+    },
+  };
+};
 
 export default Home;
