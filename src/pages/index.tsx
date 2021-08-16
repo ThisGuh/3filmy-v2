@@ -17,9 +17,9 @@ const indexPageData = () =>
         };
       })
     )
-    .catch(() => ({
+    .catch(error => ({
       popularMovies: null,
-      error: true,
+      error: error.response.status,
     }));
 
 function Home({

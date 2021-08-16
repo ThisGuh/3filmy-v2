@@ -6,10 +6,7 @@ import {
 } from 'state/actions/popularMovies.actions';
 import { PopularMoviesType } from 'types/PopularMovies';
 
-const useIndexDataDispatch = (
-  popularMovies: PopularMoviesType,
-  error: boolean
-) => {
+const useIndexDataDispatch = (popularMovies: PopularMoviesType, error: any) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -18,7 +15,7 @@ const useIndexDataDispatch = (
     } else {
       dispatch(
         getPopularMoviesError({
-          message: 'Oops! Something go wrong, try again!',
+          message: error,
         })
       );
     }
