@@ -12,7 +12,6 @@ type Props = {
 };
 
 const Wrapper = styled.div<StyledProps>`
-  min-height: 100vh;
   overflow: ${({ isBurger }) => (!isBurger ? 'hidden' : null)};
   height: ${({ isBurger }) => (!isBurger ? '100vh' : null)};
   display: grid;
