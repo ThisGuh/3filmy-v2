@@ -1,17 +1,25 @@
+import React from 'react';
 import Theme from 'components/Theme';
 import AppWrapper from 'components/AppWrapper';
 import Menu from 'components/Menu';
-import MainContent from 'components/MainContent';
 
-function Layout() {
+type Props = {
+  children?: React.ReactNode;
+};
+
+function Layout({ children }: Props) {
   return (
     <Theme>
       <AppWrapper>
         <Menu />
-        <MainContent />
+        {children}
       </AppWrapper>
     </Theme>
   );
 }
+
+Layout.defaultProps = {
+  children: null,
+};
 
 export default Layout;

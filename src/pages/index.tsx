@@ -1,6 +1,7 @@
 import { InferGetStaticPropsType } from 'next';
 import axios from 'axios';
 import Layout from 'components/Layout';
+import MainContent from 'components/MainContent';
 import fetchPopularMovies from 'helpers/fetchPopularMovies';
 import { PopularMoviesType } from 'types/PopularMovies';
 import useIndexDataDispatch from 'hooks/useIndexDataDispatch';
@@ -25,13 +26,17 @@ const indexPageData = () =>
 function Home({
   popularMovies,
   error,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
+}: InferGetStaticPropsType<typeof getServerSideProps>) {
   useIndexDataDispatch(popularMovies, error);
 
-  return <Layout />;
+  return (
+    <Layout>
+      <MainContent />
+    </Layout>
+  );
 }
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const data = await indexPageData();
 
   return {
