@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useSelector } from 'react-redux';
 import { RootState } from 'state/reducers';
 import useDesktopMediaQuery from 'hooks/useDesktopMediaQuery';
@@ -12,6 +13,8 @@ import {
   MovieWrapper,
   MovieImageWrapper,
   StyledImage,
+  IMAGE_MOVIE_WIDTH,
+  IMAGE_MOVIE_HEIGHT,
 } from './PopularMovies.style';
 
 function PopularMovies() {
@@ -29,17 +32,25 @@ function PopularMovies() {
         {popularMovies.data.results.map(
           ({ title = '', poster_path = '' }, index: number) =>
             index <= moviesAmount - 1 ? (
-              <MovieWrapper>
-                <MovieImageWrapper>
-                  <StyledImage
-                    src={`https://image.tmdb.org/t/p/original${poster_path}`}
-                    width={120}
-                    height={200}
-                    alt={title}
-                  />
-                </MovieImageWrapper>
-                <p>{title}</p>
-              </MovieWrapper>
+              <Link
+                href={`/filmy/${title.toLowerCase().replace(/ /g, '-')}`}
+                passHref
+                key={title}
+              >
+                <a>
+                  <MovieWrapper>
+                    <MovieImageWrapper>
+                      <StyledImage
+                        src={`https://image.tmdb.org/t/p/original${poster_path}`}
+                        width={IMAGE_MOVIE_WIDTH}
+                        height={IMAGE_MOVIE_HEIGHT}
+                        alt={title}
+                      />
+                    </MovieImageWrapper>
+                    <p>{title}</p>
+                  </MovieWrapper>
+                </a>
+              </Link>
             ) : null
         )}
       </Movies>

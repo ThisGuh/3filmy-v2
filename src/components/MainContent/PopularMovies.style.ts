@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 import Image from 'next/image';
 
+export const IMAGE_MOVIE_WIDTH = 120;
+export const IMAGE_MOVIE_HEIGHT = 200;
+
 export const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
@@ -30,8 +33,8 @@ export const Movies = styled.section`
 `;
 
 export const MovieImageWrapper = styled.div`
-  width: 120px;
-  height: 200px;
+  width: ${IMAGE_MOVIE_WIDTH}px;
+  height: ${IMAGE_MOVIE_HEIGHT}px;
 `;
 
 export const MovieWrapper = styled.div`
@@ -40,6 +43,11 @@ export const MovieWrapper = styled.div`
   align-items: center;
   margin: 10px;
   text-align: center;
+  transition-duration: 0.3s;
+
+  :hover {
+    transform: scale(90%);
+  }
 `;
 
 export const StyledImage = styled(Image)`
