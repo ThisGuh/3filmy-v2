@@ -5,20 +5,27 @@ import {
   GET_POPULAR_MOVIES_ERROR,
 } from 'state/actionTypes';
 
-const initialState = {
-  error: null,
+type InitialState = {
+  error: { message: string } | null;
   data: {
-    results: [],
-  },
-  loading: false,
+    results: [
+      { title: string; poster_path: string; id: number; release_date: string }
+    ];
+  };
+  loading: boolean;
+};
+
+const initialState: InitialState = {
+  error: null,
+  data: { results: [{ title: '', poster_path: '', id: 0, release_date: '' }] },
+  loading: true,
 };
 
 const popularMoviesReducer = (state = initialState, action: AnyAction) => {
   switch (action.type) {
     case GET_POPULAR_MOVIES_INIT:
       return {
-        ...state,
-        loading: true,
+        ...initialState,
       };
     case GET_POPULAR_MOVIES_SUCCESS:
       return {

@@ -5,11 +5,19 @@ import {
   SEARCH_MOVIES_ERROR,
 } from 'state/actionTypes';
 
-const initialState = {
-  error: null,
+type InitialState = {
+  error: { message: string } | null;
   data: {
-    results: [],
-  },
+    results: [
+      { title: string; poster_path: string; id: number; release_date: string }
+    ];
+  };
+  loading: boolean;
+};
+
+const initialState: InitialState = {
+  error: null,
+  data: { results: [{ title: '', poster_path: '', id: 0, release_date: '' }] },
   loading: true,
 };
 
@@ -23,7 +31,7 @@ const searchMoviesReducer = (state = initialState, action: AnyAction) => {
     case SEARCH_MOVIES_SUCCESS:
       return {
         ...state,
-        ...action.payload,
+        data: action.payload,
         loading: false,
       };
 

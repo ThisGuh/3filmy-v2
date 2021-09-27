@@ -3,7 +3,7 @@ import {
   GET_POPULAR_MOVIES_SUCCESS,
   GET_POPULAR_MOVIES_ERROR,
 } from 'state/actionTypes';
-import { PopularMoviesType } from 'types/PopularMovies';
+import { MoviesType } from 'types/Movies';
 
 type ErrorType = {
   message: string;
@@ -13,7 +13,7 @@ export const getPopularMoviesInit = () => ({
   type: GET_POPULAR_MOVIES_INIT,
 });
 
-export const getPopularMoviesSuccess = (data: PopularMoviesType) => ({
+export const getPopularMoviesSuccess = (data: MoviesType) => ({
   type: GET_POPULAR_MOVIES_SUCCESS,
   payload: data,
 });

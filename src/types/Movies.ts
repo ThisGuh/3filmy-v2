@@ -1,4 +1,4 @@
-export type PopularMoviesType = {
+export type MoviesType = {
   page: number;
   results: [
     {

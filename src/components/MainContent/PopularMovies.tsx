@@ -12,6 +12,7 @@ function PopularMovies() {
   const popularMovies = useSelector(
     (state: RootState) => state.getPopularMovies
   );
+
   const moviesAmount = useDesktopMediaQuery()
     ? DESKTOP_POPULAR_MOVIES_AMOUNT
     : MOBILE_POPULAR_MOVIES_AMOUNT;

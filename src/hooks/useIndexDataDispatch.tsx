@@ -5,12 +5,9 @@ import {
   getPopularMoviesSuccess,
   getPopularMoviesError,
 } from 'state/actions/popularMovies.actions';
-import { PopularMoviesType } from 'types/PopularMovies';
+import { MoviesType } from 'types/Movies';
 
-const useIndexDataDispatch = (
-  popularMovies: PopularMoviesType,
-  error: boolean
-) => {
+const useIndexDataDispatch = (popularMovies: MoviesType, error: boolean) => {
   const dispatch = useDispatch();
 
   useEffect(() => {

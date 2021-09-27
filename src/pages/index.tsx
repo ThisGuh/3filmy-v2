@@ -3,7 +3,7 @@ import axios from 'axios';
 import Layout from 'components/Layout';
 import MainContent from 'components/MainContent';
 import fetchPopularMovies from 'helpers/fetchPopularMovies';
-import { PopularMoviesType } from 'types/PopularMovies';
+import { MoviesType } from 'types/Movies';
 import useIndexDataDispatch from 'hooks/useIndexDataDispatch';
 
 const indexPageData = () =>
@@ -11,7 +11,7 @@ const indexPageData = () =>
     .all([fetchPopularMovies()])
     .then(
       axios.spread(popularMoviesResponse => {
-        const popularMovies: PopularMoviesType = popularMoviesResponse.data;
+        const popularMovies: MoviesType = popularMoviesResponse.data;
         return {
           popularMovies,
           error: false,
@@ -26,7 +26,7 @@ const indexPageData = () =>
 function Home({
   popularMovies,
   error,
-}: InferGetStaticPropsType<typeof getServerSideProps>) {
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   useIndexDataDispatch(popularMovies, error);
 
   return (
@@ -36,13 +36,14 @@ function Home({
   );
 }
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   const data = await indexPageData();
 
   return {
     props: {
       ...data,
     },
+    revalidate: 60,
   };
 };
 

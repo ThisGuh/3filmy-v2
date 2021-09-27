@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import Modal from 'components/Modal';
 import Movies from 'components/Movies';
-import fetchSearchMovie from 'helpers/fetchSearchMovie';
 import { FiSearch as SearchIcon } from '@react-icons/all-files/fi/FiSearch';
 import { toggleSearchModal } from 'state/actions/searchModal.actions';
 import {
@@ -50,7 +50,9 @@ function Search() {
     if (event.target.value.length > 1) {
       dispatch(searchMoviesInit());
       try {
-        const data = await fetchSearchMovie(event.target.value);
+        const { data } = await axios.post('/api/search/', {
+          phrase: event.target.value,
+        });
         dispatch(searchMoviesSuccess(data));
       } catch (error) {
         dispatch(searchMoviesError(error));
