@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import {
   Wrapper,
   MenuHeader,
@@ -8,7 +9,6 @@ import {
 } from 'components/Menu/Menu.style';
 import Burger from 'components/Menu/Burger';
 import Logo from 'components/Logo';
-import Search from 'components/Search';
 import { useSelector } from 'react-redux';
 import useMounted from 'hooks/useMounted';
 import useDesktopMediaQuery from 'hooks/useDesktopMediaQuery';
@@ -22,6 +22,8 @@ const NavItems = [
   { name: 'Filmy', to: '/filmy', icon: <MovieIcon /> },
   { name: 'Seriale', to: '/seriale', icon: <SeriesIcon /> },
 ];
+
+const Search = dynamic(() => import('components/Search'));
 
 function Menu() {
   const isBurger = useSelector((state: RootState) => state.isBurger);
