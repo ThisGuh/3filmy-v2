@@ -10,7 +10,6 @@ import {
 import Burger from 'components/Menu/Burger';
 import Logo from 'components/Logo';
 import { useSelector } from 'react-redux';
-import useMounted from 'hooks/useMounted';
 import useDesktopMediaQuery from 'hooks/useDesktopMediaQuery';
 import { RootState } from 'state/reducers';
 import { RiHome2Fill as HomeIcon } from '@react-icons/all-files/ri/RiHome2Fill';
@@ -23,19 +22,18 @@ const NavItems = [
   { name: 'Seriale', to: '/seriale', icon: <SeriesIcon /> },
 ];
 
-const Search = dynamic(() => import('components/Search'));
+const Search = dynamic(() => import('components/Search'), { ssr: false });
 
 function Menu() {
   const isBurger = useSelector((state: RootState) => state.isBurger);
   const isDesktop = useDesktopMediaQuery();
-  const isMounted = useMounted();
 
   return (
     <Wrapper>
       <MenuHeader burger={isBurger}>
         <Burger />
         <Logo burger={isBurger} />
-        {!isDesktop && isMounted && <Search />}
+        {!isDesktop && <Search />}
       </MenuHeader>
       <Nav burger={isBurger}>
         <ItemList>
